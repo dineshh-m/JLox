@@ -1,0 +1,78 @@
+class Node {
+		init(data, next) {
+			this.data = data;
+			this.next = next;
+		}
+}
+
+class Chain {
+
+	init() {
+		this.first = nil;
+		this.last = nil;
+		this.size = 0;
+	}
+
+	// For adding the element into the chain
+	add(data) {
+		if(this.first == nil and this.last == nil) {
+			this.first = Node(data, nil);
+			this.last = this.first;
+			this.size = this.size + 1;
+			return this.first;
+		}
+
+		
+		var element = Node(data, nil);
+		this.last.next = element;
+		this.last = element;
+		this.size = this.size + 1;
+		return element;
+	}
+
+
+	// Getting element by index
+	get(index) {
+		if(this.first == nil) {
+			print "Empty Chain";
+			return;
+		}
+		if(index >= this.size) {
+			print "Out of bounds";
+			return;
+		}
+		var element = this.first;
+		for(var i = 0; i < index; i = i + 1) {
+			element = element.next;
+		}
+
+		return element.data;
+	}
+}
+
+
+var list = Chain();
+
+// Adding elements
+for(var i = 0; i < 10; i = i + 1) {
+	print list.add(i).data;
+}
+
+
+// Traversing the chain
+var element = list.first;
+while(element != nil) {
+	print element.data;
+	element = element.next;
+
+}
+
+
+fun getAll(list) {
+	for(var i = 0; i < list.size; i = i + 1) {
+		print list.get(i);	
+	}
+}
+
+print "All elements";
+getAll(list);
